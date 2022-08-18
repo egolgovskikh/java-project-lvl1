@@ -1,22 +1,44 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
+import hexlet.code.games.Cli;
+import hexlet.code.games.Even;
+
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Please enter the game number and press Enter.\n1 - Greet\n2 - Even\n0 - Exit");
+        System.out.println("Please enter the game number and press Enter.\n1 - Greet\n2 - Even\n3 - Calc\n0 - Exit");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
         System.out.println("Your choice: " + choice + "\n");
-        switch (choice) {
-            case ("1") -> {
-                Cli.greetPlayer();
-            }
+
+        initGame(choice);
+    }
+
+    public static void initGame(String typeOfGame) {
+        final int maxNumber = 10;
+        final int minNumber = 1;
+        final int maxQuestions = 3;
+
+        switch (typeOfGame) {
+            case ("1") -> Cli.greetPlayer();
             case ("2") -> {
-                Even.parityCheck();
+                Even even = new Even();
+                User user = Cli.greetPlayer();
+                String name = user.getName();
+                int correctAnswers = even.startGame(maxQuestions, minNumber, maxNumber);
+                even.displayResult(name, correctAnswers, maxQuestions);
             }
-            default -> {
+            case ("3") -> {
+                Calc calc = new Calc();
+                User user = Cli.greetPlayer();
+                String name = user.getName();
+                int correctAnswers = calc.startGame(maxQuestions, minNumber, maxNumber);
+                calc.displayResult(name, correctAnswers, maxQuestions);
             }
+            case ("0") -> {}
+            default -> throw new IllegalStateException("Unexpected value typeOfGame: " + typeOfGame);
         }
     }
 }

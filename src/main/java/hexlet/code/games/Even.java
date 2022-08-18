@@ -1,23 +1,17 @@
-package hexlet.code;
+package hexlet.code.games;
+
+import hexlet.code.Generator;
 
 import java.util.Scanner;
 
-public class Even {
-    public static void parityCheck() {
-        final int max = 10;
-        final int min = 1;
-        final int range = max - min + 1;
-        final int maxQuestions = 3;
+public class Even implements Game {
 
-        System.out.println("Welcome to the Brain Games!\nMay I have your name? ");
+    public int startGame(int maxQuestions, int minNumber, int maxNumber) {
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        System.out.println("Hello, " + name + "!");
-
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
         int correctAnswers = 0;
         for (int numberOfQuestion = 1; numberOfQuestion <= maxQuestions; numberOfQuestion++) {
-            int number = min + (int) (Math.random() * range);
+            int number = Generator.generateNumber(minNumber, maxNumber);
             System.out.println("Question: " + number);
             String answer = scanner.nextLine();
             System.out.println("Your answer: " + answer);
@@ -30,7 +24,11 @@ public class Even {
                 break;
             }
         }
-        if (correctAnswers == 3) {
+        return correctAnswers;
+    }
+
+    public void displayResult(String name, int correctAnswers, int maxQuestions) {
+        if (correctAnswers == maxQuestions) {
             System.out.println("Congratulations, " + name + "!");
         } else {
             System.out.println("Let's try again, " + name + "!");
