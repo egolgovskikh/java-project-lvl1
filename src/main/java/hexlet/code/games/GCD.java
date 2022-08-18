@@ -4,9 +4,9 @@ import hexlet.code.Generator;
 
 import java.util.Scanner;
 
-public class Calc implements Game {
+public class GCD implements Game {
     /**
-     * A method fo start game "Calc".
+     * A method fo start game "GCD".
      *
      * @param maxQuestions - total number of questions
      * @param minNumber    - min number in game
@@ -15,19 +15,16 @@ public class Calc implements Game {
      */
     public int startGame(int maxQuestions, int minNumber, int maxNumber) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("What is the result of the expression?");
+        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
         int correctAnswers = 0;
         for (int numberOfQuestion = 1; numberOfQuestion <= maxQuestions; numberOfQuestion++) {
             int number1 = Generator.generateNumber(minNumber, maxNumber);
             int number2 = Generator.generateNumber(minNumber, maxNumber);
-            char operation = Generator.generateOperation();
-            System.out.println("Question: " + number1 + " " + operation + " " + number2);
 
+            System.out.println("Question: " + number1 + " " + number2);
             int answer = scanner.nextInt();
             System.out.println("Your answer: " + answer);
-
-            int correctAnswer = calculateCorrectAnswer(operation, number1, number2);
-
+            int correctAnswer = findGCD(number1, number2);
             if (answer == correctAnswer) {
                 System.out.println("Correct!");
                 correctAnswers++;
@@ -54,27 +51,13 @@ public class Calc implements Game {
         }
     }
 
-    /**
-     * A method for calculating an answer from parameters.
-     *
-     * @param operation - type of operations
-     * @param number1   - first number
-     * @param number2   - second number
-     * @return - calculated result
-     */
-    public int calculateCorrectAnswer(char operation, int number1, int number2) {
-        switch (operation) {
-            case '+' -> {
-                return number1 + number2;
+    private int findGCD(int num1, int num2) {
+        int divider = Math.min(num1, num2);
+        for (; divider >= 1; divider--) {
+            if (num1 % divider == 0 && num2 % divider == 0) {
+                break;
             }
-            case '-' -> {
-                return number1 - number2;
-            }
-            case '*' -> {
-                return number1 * number2;
-            }
-            default -> throw new IllegalStateException("Unexpected value operation: " + operation);
         }
+        return divider;
     }
 }
-

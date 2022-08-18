@@ -6,6 +6,14 @@ import java.util.Scanner;
 
 public class Even implements Game {
 
+    /**
+     * A method fo start game "Even".
+     *
+     * @param maxQuestions - total number of questions
+     * @param minNumber    - min number in game
+     * @param maxNumber    - max number in game
+     * @return - number of correct answers
+     */
     public int startGame(int maxQuestions, int minNumber, int maxNumber) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
@@ -27,6 +35,13 @@ public class Even implements Game {
         return correctAnswers;
     }
 
+    /**
+     * A method for display result.
+     *
+     * @param name           - name of user
+     * @param correctAnswers - number of correct answers
+     * @param maxQuestions   - total number of questions
+     */
     public void displayResult(String name, int correctAnswers, int maxQuestions) {
         if (correctAnswers == maxQuestions) {
             System.out.println("Congratulations, " + name + "!");
