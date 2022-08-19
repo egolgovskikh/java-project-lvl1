@@ -34,6 +34,12 @@ public class Engine {
                 int correctAnswers = progression.startGame(maxQuestions, minNumber, maxNumber);
                 progression.displayResult(name, correctAnswers, maxQuestions);
             }
+            case ("6") -> {
+                Prime prime = new Prime();
+                String name = Cli.greetPlayer();
+                int correctAnswers = prime.startGame(maxQuestions, minNumber, maxNumber);
+                prime.displayResult(name, correctAnswers, maxQuestions);
+            }
             case ("0") -> {
             }
             default -> throw new IllegalStateException("Unexpected value typeOfGame: " + typeOfGame);
