@@ -1,9 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.games.Calc;
-import hexlet.code.games.Cli;
-import hexlet.code.games.Even;
-import hexlet.code.games.GCD;
+import hexlet.code.games.*;
 
 public class Engine {
     public static void initGame(String typeOfGame) {
@@ -30,6 +27,12 @@ public class Engine {
                 String name = Cli.greetPlayer();
                 int correctAnswers = gsd.startGame(maxQuestions, minNumber, maxNumber);
                 gsd.displayResult(name, correctAnswers, maxQuestions);
+            }
+            case ("5") -> {
+                Progression progression = new Progression();
+                String name = Cli.greetPlayer();
+                int correctAnswers = progression.startGame(maxQuestions, minNumber, maxNumber);
+                progression.displayResult(name, correctAnswers, maxQuestions);
             }
             case ("0") -> {
             }
