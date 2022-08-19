@@ -34,19 +34,4 @@ public class Progression implements Game {
         }
         return correctAnswers;
     }
-
-    /**
-     * A method for display result.
-     *
-     * @param name           - name of user
-     * @param correctAnswers - number of correct answers
-     * @param maxQuestions   - total number of questions
-     */
-    public void displayResult(String name, int correctAnswers, int maxQuestions) {
-        if (correctAnswers == maxQuestions) {
-            System.out.println("Congratulations, " + name + "!");
-        } else {
-            System.out.println("Let's try again, " + name + "!");
-        }
-    }
 }
