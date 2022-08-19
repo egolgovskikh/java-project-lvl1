@@ -1,8 +1,6 @@
 package hexlet.code.games;
 
 import hexlet.code.Generator;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Progression implements Game {
@@ -21,7 +19,7 @@ public class Progression implements Game {
         for (int numberOfQuestion = 1; numberOfQuestion <= maxQuestions; numberOfQuestion++) {
             String[] numbers = Generator.generateProgression(minNumber, maxNumber);
             String correctAnswer = Generator.generateMissing(numbers);
-            System.out.println("Question: " + Arrays.toString(numbers));
+            System.out.println("Question: " + arrayToString(numbers));
             String answer = scanner.nextLine();
             System.out.println("Your answer: " + answer);
             if (answer.equals(correctAnswer)) {
@@ -33,5 +31,13 @@ public class Progression implements Game {
             }
         }
         return correctAnswers;
+    }
+
+    private String arrayToString(String[] array) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String element : array) {
+            stringBuilder.append(element).append(" ");
+        }
+        return stringBuilder.toString();
     }
 }
